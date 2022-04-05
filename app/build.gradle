@@ -4,6 +4,10 @@ plugins {
 }
 
 /*
++=====================+
+| GRADLE TASK EXAMPLE |
++=====================+
+
 Output on every project configuration:
 ======================================
 
@@ -11,6 +15,7 @@ Output on every project configuration:
 Before doFirst!
 In between doFirst and doLast!
 After doLast!
+
 BUILD SUCCESSFUL in 438ms
 
 ---
@@ -22,26 +27,28 @@ Output on ./gradlew printSomething:
 Before doFirst!
 In between doFirst and doLast!
 After doLast!
+
 > Task :app:printSomething
 In doFirst!
 In doLast!
+
 BUILD SUCCESSFUL in 628ms
 */
-task printSomething() {
-    println("Before doFirst!")
-
-    doFirst {
-        println("In doFirst!")
-    }
-
-    println("In between doFirst and doLast!")
-
-    doLast {
-        println("In doLast!")
-    }
-
-    print("After doLast!")
-}
+//task printSomething() {
+//    println("Before doFirst!")
+//
+//    doFirst {
+//        println("In doFirst!")
+//    }
+//
+//    println("In between doFirst and doLast!")
+//
+//    doLast {
+//        println("In doLast!")
+//    }
+//
+//    print("After doLast!")
+//}
 
 android {
     compileSdk 32
@@ -81,3 +88,44 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+
+/*
++==============================+
+| SINGLE MODULE PLUGIN EXAMPLE |
++==============================+
+
+Output on every project configuration:
+======================================
+
+> Configure project :app
+Configuring printSomething...
+
+BUILD SUCCESSFUL in 438ms
+
+---
+
+Output on ./gradlew printSomething:
+===================================
+
+> Configure project :app
+Configuring printSomething...
+
+> Task :app:printSomething
+Welcome from gradle world!
+
+BUILD SUCCESSFUL in 643ms
+*/
+class PrintClass implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        project.task("printSomething") {
+            println("Configuring printSomething...")
+
+            doLast {
+                println("Welcome from gradle world!")
+            }
+        }
+    }
+}
+
+apply plugin: PrintClass
