@@ -3,6 +3,46 @@ plugins {
     id 'kotlin-android'
 }
 
+/*
+Output on every project configuration:
+======================================
+
+> Configure project :app
+Before doFirst!
+In between doFirst and doLast!
+After doLast!
+BUILD SUCCESSFUL in 438ms
+
+---
+
+Output on ./gradlew printSomething:
+===================================
+
+> Configure project :app
+Before doFirst!
+In between doFirst and doLast!
+After doLast!
+> Task :app:printSomething
+In doFirst!
+In doLast!
+BUILD SUCCESSFUL in 628ms
+*/
+task printSomething() {
+    println("Before doFirst!")
+
+    doFirst {
+        println("In doFirst!")
+    }
+
+    println("In between doFirst and doLast!")
+
+    doLast {
+        println("In doLast!")
+    }
+
+    print("After doLast!")
+}
+
 android {
     compileSdk 32
 
