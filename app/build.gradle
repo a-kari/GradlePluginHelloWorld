@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'jp.neechan.akari.rename-apk-plugin'
 }
 
 /*
@@ -115,17 +116,17 @@ Welcome from gradle world!
 
 BUILD SUCCESSFUL in 643ms
 */
-class PrintClass implements Plugin<Project> {
-    @Override
-    void apply(Project project) {
-        project.task("printSomething") {
-            println("Configuring printSomething...")
-
-            doLast {
-                println("Welcome from gradle world!")
-            }
-        }
-    }
-}
-
-apply plugin: PrintClass
+//class PrintClass implements Plugin<Project> {
+//    @Override
+//    void apply(Project project) {
+//        project.task("printSomething") {
+//            println("Configuring printSomething...")
+//
+//            doLast {
+//                println("Welcome from gradle world!")
+//            }
+//        }
+//    }
+//}
+//
+//apply plugin: PrintClass
