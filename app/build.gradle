@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-//    id 'jp.neechan.akari.rename-apk-plugin'
+    id 'jp.neechan.akari.LogDependenciesPlugin' // Plugin from Maven local.
 }
 
 /*
@@ -129,9 +129,6 @@ BUILD SUCCESSFUL in 643ms
 //}
 //
 //apply plugin: PrintClass
-
-import jp.neechan.akari.plugin.LogDependenciesPlugin
-apply plugin: LogDependenciesPlugin
 
 logDependencies {
     configuration = ["implementation"]
