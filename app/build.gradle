@@ -4,6 +4,49 @@ plugins {
     id 'jp.neechan.akari.LogDependenciesPlugin' // Plugin from Maven local.
 }
 
+android {
+    compileSdk Versions.compileSdkVersion
+
+    defaultConfig {
+        applicationId AppDetail.applicationId
+        minSdk Versions.minSdkVersion
+        targetSdk Versions.targetSdkVersion
+        versionCode AppDetail.versionCode
+        versionName AppDetail.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation Dependencies.kotlinCore
+    implementation Dependencies.appCompat
+    implementation Dependencies.material
+    implementation Dependencies.constraint
+    testImplementation Dependencies.jUnit
+    androidTestImplementation Dependencies.jUnitExt
+    androidTestImplementation Dependencies.espresso
+}
+
+// LogDependenciesPlugin configuration.
+logDependencies {
+    configuration = ["implementation"]
+}
+
 /*
 +=====================+
 | GRADLE TASK EXAMPLE |
@@ -51,44 +94,6 @@ BUILD SUCCESSFUL in 628ms
 //    print("After doLast!")
 //}
 
-android {
-    compileSdk Versions.compileSdkVersion
-
-    defaultConfig {
-        applicationId AppDetail.applicationId
-        minSdk Versions.minSdkVersion
-        targetSdk Versions.targetSdkVersion
-        versionCode AppDetail.versionCode
-        versionName AppDetail.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-}
-
-dependencies {
-    implementation Dependencies.kotlinCore
-    implementation Dependencies.appCompat
-    implementation Dependencies.material
-    implementation Dependencies.constraint
-    testImplementation Dependencies.jUnit
-    androidTestImplementation Dependencies.jUnitExt
-    androidTestImplementation Dependencies.espresso
-}
-
 /*
 +==============================+
 | SINGLE MODULE PLUGIN EXAMPLE |
@@ -129,7 +134,3 @@ BUILD SUCCESSFUL in 643ms
 //}
 //
 //apply plugin: PrintClass
-
-logDependencies {
-    configuration = ["implementation"]
-}
