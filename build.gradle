@@ -1,12 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        mavenLocal()
         google()
         mavenCentral()
     }
     dependencies {
         classpath Dependencies.buildToolGradle
         classpath Dependencies.kotlinGradlePlugin
+        classpath group: 'jp.neechan.akari', name: 'LogDependenciesPlugin', version: '1.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
