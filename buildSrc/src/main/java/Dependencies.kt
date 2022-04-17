@@ -22,8 +22,8 @@ object Versions {
     const val minSdkVersion = 21
     const val targetSdkVersion = 32
 
-    const val kotlinStdLibVersion = "1.5.30"
-    const val buildToolGradleVersion = "7.0.4"
+    const val kotlinStdLibVersion = "1.6.20"
+    const val buildToolGradleVersion = "7.1.3"
 
     const val kotlinCoreVersion = "1.7.0"
     const val appCompatVersion = "1.4.1"
