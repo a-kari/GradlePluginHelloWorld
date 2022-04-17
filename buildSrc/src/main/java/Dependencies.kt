@@ -5,14 +5,16 @@ object Dependencies {
     const val kotlinCore = "androidx.core:core-ktx:${Versions.kotlinCoreVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val material = "com.google.android.material:material:${Versions.materialVersion}"
-    const val constraint = "androidx.constraintlayout:constraintlayout:${Versions.constraintVersion}"
+    const val constraint =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintVersion}"
 
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val jUnitExt = "androidx.test.ext:junit:${Versions.jUnitExtVersion}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
 
     const val buildToolGradle = "com.android.tools.build:gradle:${Versions.buildToolGradleVersion}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinStdLibVersion}"
+    const val kotlinGradlePlugin =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinStdLibVersion}"
 }
 
 object Versions {
@@ -38,10 +40,10 @@ object AppDetail {
     const val versionCode = 1
     const val versionName = "1.0.0"
 
-    const val previousPath = "/outputs/apk/release"
-    const val targetPath = "newOutput"
+    const val defaultApkDirectoryPath = "/outputs/apk/release"
+    const val newApkDirectoryPath = "newApkDirectory"
 
-    const val previousName = "app-release-unsigned.apk"
+    const val defaultApkName = "app-release-unsigned.apk"
     val newApkName = "$appName-${getDate(false)}($versionCode).apk"
 
     const val dependencyFileName = "Dependencies.txt"
@@ -50,9 +52,9 @@ object AppDetail {
 fun getDate(forTxtFile: Boolean): String {
     val current = LocalDateTime.now()
     val formatter = if (forTxtFile) {
-        DateTimeFormatter.ofPattern("dd MMM, yyy")
+        DateTimeFormatter.ofPattern("dd MMM, yyy HH:mm:ss")
     } else {
-        DateTimeFormatter.ofPattern("yyyyMMdd")
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     }
     return current.format(formatter)
 }
