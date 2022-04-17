@@ -6,12 +6,10 @@ import AppDetail.newApkDirectoryPath
 import AppDetail.newApkName
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import tasks.extensions.buildDirectoryPath
 import java.io.File
 
 open class RenameApkTask : DefaultTask() {
-
-    private val buildDirectoryPath
-        get() = project.buildDir.absoluteFile.path
 
     private val oldApkPath
         get() = "$buildDirectoryPath/$defaultApkDirectoryPath/$defaultApkName"

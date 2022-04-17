@@ -44,17 +44,13 @@ object AppDetail {
     const val newApkDirectoryPath = "newApkDirectory"
 
     const val defaultApkName = "app-release-unsigned.apk"
-    val newApkName = "$appName-${getDate(false)}($versionCode).apk"
+    val newApkName = "$appName-${getFormattedDateTime()}($versionCode).apk"
 
     const val dependencyFileName = "Dependencies.txt"
 }
 
-fun getDate(forTxtFile: Boolean): String {
+fun getFormattedDateTime(): String {
     val current = LocalDateTime.now()
-    val formatter = if (forTxtFile) {
-        DateTimeFormatter.ofPattern("dd MMM, yyy HH:mm:ss")
-    } else {
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-    }
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     return current.format(formatter)
 }
